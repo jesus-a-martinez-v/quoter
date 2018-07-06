@@ -16,34 +16,32 @@ func GetQuotes(context *gin.Context) {
 	context.JSON(http.StatusOK, quotes)
 }
 
-func GetQuoteById(ctx *gin.Context) {
-	quoteId, _ := strconv.Atoi(ctx.Param("id"))
+func GetQuoteById(context *gin.Context) {
+	quoteId, _ := strconv.Atoi(context.Param("id"))
 	quote := service.GetQuoteById(int64(quoteId))
 
 	if quote == nil {
-		ctx.String(http.StatusNotFound, "Couldn't find quote with id %d", quoteId)
+		context.String(http.StatusNotFound, "Couldn't find quote with id %d", quoteId)
 		return
 	}
 
-	ctx.JSON(http.StatusOK, quote)
+	context.JSON(http.StatusOK, quote)
 }
 
-func SaveQuote(ctx *gin.Context) {
-
+func SaveQuote(context *gin.Context) {
 	var newQuote dto.QuoteDto
-
-	err := ctx.ShouldBindJSON(&newQuote)
+	err := context.ShouldBindJSON(&newQuote)
 
 	if err != nil {
-		ctx.String(http.StatusBadRequest, "Bad request", err)
+		context.String(http.StatusBadRequest, "Bad request", err)
 	}
 
 	createdQuoteId, err := service.SaveQuote(newQuote)
 
 	if err != nil {
-		ctx.String(http.StatusInternalServerError, "Couldn't save quote", err)
+		context.String(http.StatusInternalServerError, "Couldn't save quote", err)
 		return
 	}
 
-	ctx.JSON(http.StatusCreated, createdQuoteId)
+	context.JSON(http.StatusCreated, createdQuoteId)
 }

@@ -3,18 +3,20 @@ package server
 import (
 	"github.com/gin-gonic/gin"
 	"net/http"
+	"quoter/src/api/config/constants"
 	"quoter/src/api/controller"
 )
-
-const port = ":8000"
 
 var Router *gin.Engine
 
 func InitRouter() {
 	Router = gin.Default()
+
 	Router.GET("/quotes", controller.GetQuotes)
 	Router.GET("/quotes/:id", controller.GetQuoteById)
-	Router.Run(port)
+	Router.POST("/quotes", controller.SaveQuote)
+
+	Router.Run(constants.ServerPort)
 }
 
 func ServeHTTP(w http.ResponseWriter, req *http.Request) {

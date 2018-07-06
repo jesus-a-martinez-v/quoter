@@ -26,10 +26,18 @@ func GetQuotes(author string, genre string) []domain.QuoteEntity {
 	return toEntities(results)
 }
 
-func InsertQuote(entity *domain.QuoteEntity) {
-	const insertStatement = `INSERT INTO quotes(quote, author, genre) VALUES($1, $2, $3)`
+func InsertQuote(entity *domain.QuoteEntity) (int64, error) {
+	const insertStatement = `INSERT INTO quotes(quote, author, genre) VALUES($1, $2, $3) RETURNING id`
 
-	db.Database.Exec(insertStatement, entity.Quote, entity.Author, entity.Genre)
+	insertedRowId := int64(0)
+	err := db.Database.QueryRow(insertStatement, entity.Quote, entity.Author, entity.Genre).Scan(&insertedRowId)
+
+	if err != nil {
+		loggers.Error.Println("Couldn't save quote. REASON:", err)
+		return -1, err
+	}
+
+	return insertedRowId, nil
 }
 
 func GetQuoteById(id int64) *domain.QuoteEntity {

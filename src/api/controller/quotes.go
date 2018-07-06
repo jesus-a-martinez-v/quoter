@@ -3,7 +3,6 @@ package controller
 import (
 	"github.com/gin-gonic/gin"
 	"net/http"
-	"quoter/src/api/config/loggers"
 	"quoter/src/api/service"
 	"strconv"
 )
@@ -12,7 +11,6 @@ func GetQuotes(context *gin.Context) {
 	author := context.Query("author")
 	genre := context.Query("genre")
 
-	loggers.Info.Println("QUERY PARAM", context.Query("author"))
 	quotes := service.GetQuotes(author, genre)
 	context.JSON(http.StatusOK, quotes)
 }

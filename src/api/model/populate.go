@@ -21,7 +21,6 @@ func PopulateDb(filePath string) {
 	csvReader := csv.NewReader(bufio.NewReader(f))
 	csvReader.Comma = ';'
 
-	recordRead := 0
 	for {
 		record, err := csvReader.Read()
 
@@ -33,7 +32,6 @@ func PopulateDb(filePath string) {
 		entity := rowToEntity(record)
 
 		repository.InsertQuote(&entity)
-		recordRead += 1
 	}
 }
 

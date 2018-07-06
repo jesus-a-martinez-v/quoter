@@ -1,7 +1,17 @@
-package api
+package main
 
-import "fmt"
+import (
+	"quoter/src/api/config/db"
+	"quoter/src/api/config/loggers"
+	"quoter/src/api/config/server"
+	"quoter/src/api/model"
+	"quoter/src/api/config/constants"
+)
 
 func main() {
-	fmt.Println("Hello world")
+	loggers.Init()
+	db.ConnectAndSetDatabase()
+	db.Init()
+	model.PopulateDb(constants.AllQuotesCsvFilePath)
+	server.InitRouter()
 }

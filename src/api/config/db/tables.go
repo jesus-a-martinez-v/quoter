@@ -9,6 +9,7 @@ const createTableStatement = `
 		UNIQUE(quote, author, genre)
 	)
 	`
+
 var tables = []string{createTableStatement}
 
 var indices = []string{

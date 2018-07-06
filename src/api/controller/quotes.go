@@ -1,11 +1,11 @@
 package controller
 
 import (
-	"net/http"
-	"quoter/src/api/service"
 	"github.com/gin-gonic/gin"
-	"strconv"
+	"net/http"
 	"quoter/src/api/config/loggers"
+	"quoter/src/api/service"
+	"strconv"
 )
 
 func GetQuotes(context *gin.Context) {

@@ -2,10 +2,10 @@ package repository
 
 import (
 	"database/sql"
-	"quoter/src/api/model/domain"
 	"fmt"
 	"quoter/src/api/config/db"
 	"quoter/src/api/config/loggers"
+	"quoter/src/api/model/domain"
 )
 
 func GetQuotes(author string, genre string) []domain.QuoteEntity {

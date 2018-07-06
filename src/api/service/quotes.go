@@ -1,8 +1,8 @@
 package service
 
 import (
-	"quoter/src/api/model/repository"
 	"quoter/src/api/model/domain"
+	"quoter/src/api/model/repository"
 	"quoter/src/api/service/dto"
 )
 
@@ -32,9 +32,9 @@ func fromEntitiesToDtos(entities *[]domain.QuoteEntity) []dto.QuoteDto {
 }
 func fromEntityToDto(entity domain.QuoteEntity) dto.QuoteDto {
 	return dto.QuoteDto{
-		Quote: entity.Quote,
+		Quote:  entity.Quote,
 		Author: entity.Author,
-		Genre: entity.Genre,
-		Id: entity.Id,
+		Genre:  entity.Genre,
+		Id:     entity.Id,
 	}
 }

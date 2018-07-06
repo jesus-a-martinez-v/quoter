@@ -11,11 +11,11 @@ import (
 var Database *sql.DB
 
 const (
-	host = "localhost"
-	port = 5432
+	host     = "localhost"
+	port     = 5432
 	password = "quoter"
-	user = "quoter"
-	dbName = "quoter"
+	user     = "quoter"
+	dbName   = "quoter"
 )
 
 func ConnectAndSetDatabase() {
@@ -33,7 +33,7 @@ func ConnectAndSetDatabase() {
 		panic(err)
 	}
 
-	err = db.Ping()  // Needed to actually open a connection.
+	err = db.Ping() // Needed to actually open a connection.
 	if err != nil {
 		loggers.Error.Println("An error occurred trying to ping the database.", err)
 		panic(err)

@@ -1,13 +1,13 @@
 package model
 
 import (
-	"os"
-	"encoding/csv"
 	"bufio"
+	"encoding/csv"
 	"io"
+	"os"
+	"quoter/src/api/config/loggers"
 	"quoter/src/api/model/domain"
 	"quoter/src/api/model/repository"
-	"quoter/src/api/config/loggers"
 )
 
 func PopulateDb(filePath string) {
@@ -39,8 +39,8 @@ func PopulateDb(filePath string) {
 
 func rowToEntity(row []string) domain.QuoteEntity {
 	return domain.QuoteEntity{
-		Quote: row[0],
+		Quote:  row[0],
 		Author: row[1],
-		Genre: row[2],
+		Genre:  row[2],
 	}
 }

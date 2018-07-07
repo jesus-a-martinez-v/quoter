@@ -55,6 +55,17 @@ func GetQuoteById(id int64) *domain.QuoteEntity {
 	return toEntity(result)
 }
 
+func DeleteQuoteById(id int64) {
+	const statement = `
+		DELETE FROM quotes WHERE id = $1
+	`
+	_, err := db.Database.Exec(statement, id)
+
+	if err != nil {
+		loggers.Error.Println("Couldn't delete quote with id ", id, "REASON:", err)
+	}
+}
+
 func toEntities(results *sql.Rows) []domain.QuoteEntity {
 	var quotes []domain.QuoteEntity
 

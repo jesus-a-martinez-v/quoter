@@ -15,6 +15,7 @@ func InitRouter() {
 	Router.GET("/quotes", controller.GetQuotes)
 	Router.GET("/quotes/:id", controller.GetQuoteById)
 	Router.POST("/quotes", controller.SaveQuote)
+	Router.DELETE("/quotes/:id", controller.DeleteQuote)
 
 	Router.Run(constants.ServerPort)
 }

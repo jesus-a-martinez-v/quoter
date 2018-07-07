@@ -28,6 +28,14 @@ func GetQuoteById(context *gin.Context) {
 	context.JSON(http.StatusOK, quote)
 }
 
+func DeleteQuote(context *gin.Context) {
+	quoteId, _ := strconv.Atoi(context.Param("id"))
+	service.DeleteQuoteById(int64(quoteId))
+
+	context.String(http.StatusNoContent, "Deleted")
+
+}
+
 func SaveQuote(context *gin.Context) {
 	var newQuote dto.QuoteDto
 	err := context.ShouldBindJSON(&newQuote)

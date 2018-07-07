@@ -31,6 +31,10 @@ func SaveQuote(requestDto dto.QuoteDto) (int64, error) {
 	return repository.InsertQuote(&entity)
 }
 
+func DeleteQuoteById(id int64) {
+	repository.DeleteQuoteById(id)
+}
+
 func fromEntitiesToDtos(entities *[]domain.QuoteEntity) []dto.QuoteDto {
 	dtos := make([]dto.QuoteDto, len(*entities))
 

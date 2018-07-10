@@ -2,7 +2,6 @@ package repository
 
 import (
 	"database/sql"
-	"fmt"
 	"quoter/src/api/config/db"
 	"quoter/src/api/config/loggers"
 	"quoter/src/api/model/domain"
@@ -14,10 +13,25 @@ func GetQuotes(author string, genre string) []domain.QuoteEntity {
 		FROM quotes
 		WHERE (($1 = '') OR author = $1)
 		  AND (($2 = '') OR genre = $2)`
+	return getQuotesWithStatement(statement, author, genre)
+}
+
+func GetRandomQuote(author string, genre string) []domain.QuoteEntity {
+	statement := `
+		SELECT id, quote, author, genre 
+		FROM quotes TABLESAMPLE bernoulli(30)  -- Selects only 30 percent.
+		WHERE (($1 = '') OR author = $1)
+		  AND (($2 = '') OR genre = $2)
+		LIMIT 1`
+
+	return getQuotesWithStatement(statement, author, genre)
+}
+
+func getQuotesWithStatement(statement string, author string, genre string) []domain.QuoteEntity {
 	results, err := db.Database.Query(statement, author, genre)
 
 	if err != nil {
-		// TODO Handle in a better way
+		loggers.Error.Println("Query failed. REASON:", err)
 		panic(err)
 	}
 
@@ -78,7 +92,7 @@ func toEntities(results *sql.Rows) []domain.QuoteEntity {
 			&quote.Genre)
 
 		if err != nil {
-			fmt.Println("Couldn't process row.")
+			loggers.Error.Println("Couldn't process row.")
 			continue
 		}
 

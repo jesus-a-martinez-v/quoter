@@ -4,10 +4,22 @@ import (
 	"quoter/src/api/model/domain"
 	"quoter/src/api/model/repository"
 	"quoter/src/api/service/dto"
+	"strconv"
 )
 
-func GetQuotes(author string, genre string) []dto.QuoteDto {
-	entities := repository.GetQuotes(author, genre)
+func GetQuotes(author string, genre string, random string) []dto.QuoteDto {
+	var entities []domain.QuoteEntity
+
+	if len(random) > 0 {
+		fetchRandom, _ := strconv.ParseBool(random)
+
+		if fetchRandom {
+			entities = repository.GetRandomQuote(author, genre)
+			return fromEntitiesToDtos(&entities)
+		}
+	}
+
+	entities = repository.GetQuotes(author, genre)
 	return fromEntitiesToDtos(&entities)
 }
 

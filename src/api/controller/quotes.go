@@ -11,8 +11,14 @@ import (
 func GetQuotes(context *gin.Context) {
 	author := context.Query("author")
 	genre := context.Query("genre")
+	random := context.Query("random")
 
-	quotes := service.GetQuotes(author, genre)
+	if len(random) > 0 && (random != "true" && random != "false") {
+		context.String(http.StatusBadRequest, "Random must be either true or false if specified.")
+		return
+	}
+
+	quotes := service.GetQuotes(author, genre, random)
 	context.JSON(http.StatusOK, quotes)
 }
 

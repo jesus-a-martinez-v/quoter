@@ -1,10 +1,10 @@
 package main
 
 import (
-	"quoter/src/api/config/constants"
 	"quoter/src/api/config/db"
 	"quoter/src/api/config/loggers"
 	"quoter/src/api/config/server"
+	"quoter/src/api/config/constants"
 	"quoter/src/api/model"
 )
 

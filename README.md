@@ -6,7 +6,7 @@ Simple API to manage your favorite quotes by the influential people you admire t
 
 # Dependencies
 
-In order to Quoter to work in your local environment, you'll need:
+In order for Quoter to work in your local environment, you'll need:
 
 - [Go](https://golang.org/).
 - [Gingonic](https://gin-gonic.github.io/gin/).

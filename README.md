@@ -2,7 +2,7 @@
 
 Simple API to manage your favorite quotes by the influential people you admire the most! 
 
-![Quote](https://i.pinimg.com/originals/7b/25/0b/7b250b3dc7c435eab2c840b5a50488e0.jpg)
+![Quote](https://i.pinimg.com/originals/b7/91/d8/b791d82bb7fcc62ff09b753259264b54.jpg)
 
 # Dependencies
 

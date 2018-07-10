@@ -73,14 +73,6 @@ Response:
 
 ```$xslt
 DELETE localhost:8000/quotes/42
-
-Response: 
-
-{
-    "id": 42,
-    "quote": "Trust the Process",
-    "author": "John Sonmez"
-}
 ```
 
 # Get quotes
@@ -98,9 +90,10 @@ Example: http://localhost:8000/quotes?random=true&author=Henry+Ford&genre=happin
 
 Response: 
 [
-    {"id": 32041,
+    {
+     "id": 32041,
      "author": "Henry Ford","genre":"happiness", 
      "quote":"There is joy in work. There is no happiness except in the realization that we have accomplished something."
-     }
+    }
 ]
 ```
